@@ -21,16 +21,19 @@ spec_dir_exceptions = { "kubernetes-1.18.14", "kubernetes-1.18.17", "kubernetes-
 #     specs: List[str]
 
 def generate_markdown(license_collection):
-    res = []
-    res.append(license_collection.header)
-    res.append('')
-    res.append('| ' + ' | '.join(license_collection.table_headers) + ' |')
-    res.append('|' + '|'.join([' --- ' for _ in license_collection.table_headers]) + '|')
+    res = [
+        license_collection.header,
+        '',
+        '| ' + ' | '.join(license_collection.table_headers) + ' |',
+        '|'
+        + '|'.join([' --- ' for _ in license_collection.table_headers])
+        + '|',
+    ]
 
     for license in license_collection.licenses:
         license.specs.sort(key=str.lower)
         res.append('| {0} | {1} | {2} |'.format(license.origin, license.license, ' <br> '.join(license.specs)))
-    
+
     return '\n'.join(res) + '\n'
 
 

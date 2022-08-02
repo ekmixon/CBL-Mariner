@@ -9,7 +9,7 @@ import sys
 import string
 
 if (len(sys.argv) != 2):
-    print("syntax: " + sys.argv[0] + " input-filename")
+    print(f"syntax: {sys.argv[0]} input-filename")
     sys.exit(1)
 
 filename = sys.argv[1]
@@ -21,10 +21,9 @@ with open(filename, 'r') as f:
         if (len(line) == 1):
             if len(block) == 0:
                 continue
-            else:
-                combined_string = string.join(block, '')
-                block_list.append(combined_string)
-                block = []
+            combined_string = string.join(block, '')
+            block_list.append(combined_string)
+            block = []
         else:
             block.append(line)
 
